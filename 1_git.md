@@ -46,3 +46,4 @@
 7. 브랜치를 만들어보자
 - git branch
 - git branch [브랜치이름]
+- git branch -D [브랜치이름]
