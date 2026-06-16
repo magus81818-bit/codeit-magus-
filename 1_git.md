@@ -34,3 +34,12 @@
 
 5. 저장된 기록을 확인해보자.
 - git log
+
+6. 다른 저장 기록으로 이동하기
+- checkout: HEAD를 이동시킨다.
+- git checkout [브랜치이름]
+  - HEAD가 브랜치를 가리킨다.
+- git checkout [커밋아이디]
+  - HEAD가 특정 커밋을 가리킨다.
+  - HEAD가 브랜치에서 이탈(detached)했다.
+
