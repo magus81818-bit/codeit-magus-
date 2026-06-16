@@ -43,3 +43,6 @@
   - HEAD가 특정 커밋을 가리킨다.
   - HEAD가 브랜치에서 이탈(detached)했다.
 
+7. 브랜치를 만들어보자
+- git branch
+- git branch [브랜치이름]
