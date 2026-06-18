@@ -1,8 +1,9 @@
 import fs from "node:fs";
 import path from "node:path";
 import { Memo } from "../../domain/memo.js";
+import { IMemoRepo } from "../../service/memo-repo.interface.js";
 
-export class MemoRepo {
+export class MemoRepo implements IMemoRepo {
   filePath: string;
 
   constructor() {

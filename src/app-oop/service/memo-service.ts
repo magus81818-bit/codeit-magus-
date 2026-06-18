@@ -1,10 +1,12 @@
-import { MemoRepoLike, MemoView, UserRepoLike } from "../types.js";
+import { MemoView } from "../types.js";
+import { IMemoRepo } from "./memo-repo.interface.js";
+import { IUserRepo } from "./user-repo.interface.js";
 
 export class MemoService {
-  private _userRepo: UserRepoLike;
-  private _memoRepo: MemoRepoLike;
+  private _userRepo: IUserRepo;
+  private _memoRepo: IMemoRepo;
 
-  constructor(userRepo: UserRepoLike, memoRepo: MemoRepoLike) {
+  constructor(userRepo: IUserRepo, memoRepo: IMemoRepo) {
     this._userRepo = userRepo;
     this._memoRepo = memoRepo;
   }

@@ -1,9 +1,10 @@
-import { AuthenticatedUser, UserRepoLike } from "../types.js";
+import { AuthenticatedUser } from "../types.js";
+import { IUserRepo } from "./user-repo.interface.js";
 
 export class AuthService {
-  private _userRepo: UserRepoLike;
+  private _userRepo: IUserRepo;
 
-  constructor(userRepo: UserRepoLike) {
+  constructor(userRepo: IUserRepo) {
     this._userRepo = userRepo;
   }
 

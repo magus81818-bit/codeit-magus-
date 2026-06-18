@@ -1,8 +1,9 @@
 import fs from "node:fs";
 import path from "node:path";
 import { User } from "../../domain/user.js";
+import { IUserRepo } from "../../service/user-repo.interface.js";
 
-export class UserRepo {
+export class UserRepo implements IUserRepo {
   filePath: string;
 
   constructor() {
