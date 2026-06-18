@@ -1,30 +1,29 @@
 export class User {
-  #email: string;
-  #password: string;
-  #username: string;
+  private _email: string;
+  private _password: string;
+  private _username: string;
 
   constructor(email: string, password: string, username: string) {
-    this.#email = email;
-    this.#password = password;
-    this.#username = username;
+    this._email = email;
+    this._password = password;
+    this._username = username;
   }
 
-  getEmail(): string {
-    return this.#email;
+  get email(): string {
+    return this._email;
   }
 
-  getPassword(): string {
-    return this.#password;
+  get password(): string {
+    return this._password;
   }
 
-  getUsername(): string {
-    return this.#username;
+  get username(): string {
+    return this._username;
   }
 
   isCredentialValidate(credential: string): boolean {
-    const email = credential.split("-")[0];
-    const password = credential.split("-")[1];
+    const [email, password] = credential.split("-");
 
-    return this.#email === email && this.#password === password;
+    return this._email === email && this._password === password;
   }
 }

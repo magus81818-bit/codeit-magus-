@@ -14,14 +14,14 @@ export class AuthService {
       return null;
     }
 
-    if (foundUser.getPassword() !== inputPassword) {
+    if (foundUser.password !== inputPassword) {
       return null;
     }
 
     return {
-      email: foundUser.getEmail(),
-      username: foundUser.getUsername(),
-      credential: `${foundUser.getEmail()}-${foundUser.getPassword()}`,
+      email: foundUser.email,
+      username: foundUser.username,
+      credential: `${foundUser.email}-${foundUser.password}`,
     };
   }
 

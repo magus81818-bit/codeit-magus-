@@ -30,7 +30,7 @@ export class UserRepo {
 
   findUserByEmail(email: string): User | null {
     const users = this.loadUsers();
-    const foundUser = users.find((v) => v.getEmail() === email);
+    const foundUser = users.find((v) => v.email === email);
     return foundUser !== undefined ? foundUser : null;
   }
 }
