@@ -21,11 +21,11 @@ export class MemoService {
 
     return this.#memoRepo
       .loadMemos()
-      .filter((v) => v.getEmail() === email)
+      .filter((v) => v.email === email)
       .map((v) => ({
-        email: v.getEmail(),
-        title: v.getTitle(),
-        content: v.getContent(),
+        email: v.email,
+        title: v.title,
+        content: v.content,
       }));
   }
 

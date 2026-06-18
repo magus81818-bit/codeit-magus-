@@ -1,23 +1,23 @@
 export class Memo {
-  #email: string;
-  #title: string;
-  #content: string;
+  private _email: string;
+  private _title: string;
+  private _content: string;
 
   constructor(email: string, title: string, content: string) {
-    this.#email = email;
-    this.#title = title;
-    this.#content = content;
+    this._email = email;
+    this._title = title;
+    this._content = content;
   }
 
-  getTitle(): string {
-    return this.#title;
+  get email(): string {
+    return this._email;
   }
 
-  getContent(): string {
-    return this.#content;
+  get title(): string {
+    return this._title;
   }
 
-  getEmail(): string {
-    return this.#email;
+  get content(): string {
+    return this._content;
   }
 }
