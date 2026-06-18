@@ -1,17 +1,17 @@
 import { MemoRepoLike, MemoView, UserRepoLike } from "../types.js";
 
 export class MemoService {
-  #userRepo: UserRepoLike;
-  #memoRepo: MemoRepoLike;
+  private _userRepo: UserRepoLike;
+  private _memoRepo: MemoRepoLike;
 
   constructor(userRepo: UserRepoLike, memoRepo: MemoRepoLike) {
-    this.#userRepo = userRepo;
-    this.#memoRepo = memoRepo;
+    this._userRepo = userRepo;
+    this._memoRepo = memoRepo;
   }
 
   getMyMemos(credential: string): MemoView[] {
-    const email = credential.split("-")[0];
-    const foundUser = this.#userRepo.findUserByEmail(email);
+    const [email] = credential.split("-");
+    const foundUser = this._userRepo.findUserByEmail(email);
     if (foundUser === null) {
       return [];
     }
@@ -19,8 +19,8 @@ export class MemoService {
       return [];
     }
 
-    return this.#memoRepo
-      .loadMemos()
+    const memos = this._memoRepo.loadMemos();
+    return memos
       .filter((v) => v.email === email)
       .map((v) => ({
         email: v.email,
@@ -30,8 +30,8 @@ export class MemoService {
   }
 
   createMemo(credential: string, title: string, content: string): boolean {
-    const email = credential.split("-")[0];
-    const foundUser = this.#userRepo.findUserByEmail(email);
+    const [email] = credential.split("-");
+    const foundUser = this._userRepo.findUserByEmail(email);
     if (foundUser === null) {
       return false;
     }
@@ -39,7 +39,7 @@ export class MemoService {
       return false;
     }
 
-    this.#memoRepo.createMemo(email, title, content);
+    this._memoRepo.createMemo(email, title, content);
     return true;
   }
 }

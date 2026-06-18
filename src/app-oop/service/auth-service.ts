@@ -1,14 +1,14 @@
 import { AuthenticatedUser, UserRepoLike } from "../types.js";
 
 export class AuthService {
-  #userRepo: UserRepoLike;
+  private _userRepo: UserRepoLike;
 
   constructor(userRepo: UserRepoLike) {
-    this.#userRepo = userRepo;
+    this._userRepo = userRepo;
   }
 
   signIn(inputEmail: string, inputPassword: string): AuthenticatedUser | null {
-    const foundUser = this.#userRepo.findUserByEmail(inputEmail);
+    const foundUser = this._userRepo.findUserByEmail(inputEmail);
 
     if (foundUser === null) {
       return null;
@@ -26,13 +26,13 @@ export class AuthService {
   }
 
   signUp(inputEmail: string, inputPassword: string, inputUsername: string): boolean {
-    const foundUser = this.#userRepo.findUserByEmail(inputEmail);
+    const foundUser = this._userRepo.findUserByEmail(inputEmail);
 
     if (foundUser !== null) {
       return false;
     }
 
-    this.#userRepo.createUser(inputEmail, inputPassword, inputUsername);
+    this._userRepo.createUser(inputEmail, inputPassword, inputUsername);
     return true;
   }
 }
