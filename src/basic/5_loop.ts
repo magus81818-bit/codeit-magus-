@@ -1,5 +1,5 @@
-import { users } from "./2_ref_value.js";
-import { printProfile } from "./4_function.js";
+import { users } from "./2_ref_value";
+import { printProfile } from "./4_function/1";
 
 // 반복문
 
@@ -11,7 +11,7 @@ import { printProfile } from "./4_function.js";
 
 // 방법1: 0부터 9까지 출력
 console.log("시작");
-let i = 0;
+let i: number = 0;
 while (i < 10) {
   console.log(i);
   i = i + 1;
@@ -20,7 +20,7 @@ console.log("끝");
 
 // 방법2: 0부터 9까지 출력
 console.log("시작");
-let j = 0;
+let j: number = 0;
 while (true) {
   console.log(j);
   j = j + 1;
