@@ -3,10 +3,10 @@ import { prompt } from "../../util.js";
 import { AuthService } from "../../service/auth-service.js";
 
 export class AuthScreen {
-  #authService: AuthService;
+  private _authService: AuthService;
 
   constructor(authService: AuthService) {
-    this.#authService = authService;
+    this._authService = authService;
   }
 
   showAuthUI(): string {
@@ -26,7 +26,7 @@ export class AuthScreen {
       return;
     }
 
-    const user = this.#authService.signIn(inputEmail, inputPassword);
+    const user = this._authService.signIn(inputEmail, inputPassword);
     if (user === null) {
       console.log("이메일 또는 비밀번호가 일치하지 않습니다.\n");
       return;
@@ -58,7 +58,7 @@ export class AuthScreen {
       return;
     }
 
-    const isSignedUp = this.#authService.signUp(
+    const isSignedUp = this._authService.signUp(
       inputEmail,
       inputPassword,
       inputUsername,
@@ -69,7 +69,7 @@ export class AuthScreen {
       return;
     }
 
-    console.log("회원 가입에 성공했어요.\n");
+    console.log("회원가입에 성공했어요.\n");
   }
 
   showInvalidInputUI(): void {

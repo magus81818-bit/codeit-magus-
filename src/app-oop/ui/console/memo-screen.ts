@@ -2,10 +2,10 @@ import { MemoService } from "../../service/memo-service.js";
 import { prompt } from "../../util.js";
 
 export class MemoScreen {
-  #memoService: MemoService;
+  private _memoService: MemoService;
 
   constructor(memoService: MemoService) {
-    this.#memoService = memoService;
+    this._memoService = memoService;
   }
 
   showMenuUI(): string {
@@ -13,7 +13,7 @@ export class MemoScreen {
   }
 
   showAllMemosUI(credential: string): void {
-    const memos = this.#memoService.getMyMemos(credential);
+    const memos = this._memoService.getMyMemos(credential);
     for (let i = 0; i < memos.length; i = i + 1) {
       console.log(`제목: ${memos[i].title}`);
       console.log(`내용: ${memos[i].content}\n`);
@@ -24,7 +24,7 @@ export class MemoScreen {
     const title = prompt("제목: ");
     const content = prompt("내용: ");
 
-    const isCreated = this.#memoService.createMemo(credential, title, content);
+    const isCreated = this._memoService.createMemo(credential, title, content);
 
     if (isCreated === true) {
       console.log("메모가 생성되었습니다.\n");
