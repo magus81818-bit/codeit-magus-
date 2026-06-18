@@ -20,4 +20,8 @@ export class Memo {
   get content(): string {
     return this._content;
   }
+
+  isContentValidate(): boolean {
+    return this._content.includes("바보");
+  }
 }
