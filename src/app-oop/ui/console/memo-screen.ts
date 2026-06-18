@@ -1,19 +1,18 @@
+import { MemoService } from "../../service/memo-service.js";
 import { prompt } from "../../util.js";
 
 export class MemoScreen {
-  // 인스턴스 속성(변수)
-  #memoService;
+  #memoService: MemoService;
 
-  // 메소드(함수)
-  constructor(memoService) {
+  constructor(memoService: MemoService) {
     this.#memoService = memoService;
   }
 
-  showMenuUI() {
+  showMenuUI(): string {
     return prompt("메모 불러오기(0), 메모 작성하기(1), 로그아웃(2), 종료(q): ");
   }
 
-  showAllMemosUI(credential) {
+  showAllMemosUI(credential: string): void {
     const memos = this.#memoService.getMyMemos(credential);
     for (let i = 0; i < memos.length; i = i + 1) {
       console.log(`제목: ${memos[i].title}`);
@@ -21,7 +20,7 @@ export class MemoScreen {
     }
   }
 
-  showCreateMemoUI(credential) {
+  showCreateMemoUI(credential: string): void {
     const title = prompt("제목: ");
     const content = prompt("내용: ");
 

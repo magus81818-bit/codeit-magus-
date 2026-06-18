@@ -1,25 +1,23 @@
 export class Memo {
-  // 속성
-  #email;
-  #title;
-  #content;
+  #email: string;
+  #title: string;
+  #content: string;
 
-  // 메소드
-  constructor(email, title, content) {
+  constructor(email: string, title: string, content: string) {
     this.#email = email;
     this.#title = title;
     this.#content = content;
   }
 
-  getTitle() {
+  getTitle(): string {
     return this.#title;
   }
 
-  getContent() {
+  getContent(): string {
     return this.#content;
   }
 
-  getEmail() {
+  getEmail(): string {
     return this.#email;
   }
 }

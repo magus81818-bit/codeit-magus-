@@ -26,7 +26,8 @@
     "rootDir": "src",
     "outDir": "dist",
     "sourceMap": true,
-    "typeRoots": ["src/shared/types", "node_modules/@types"]
+    "typeRoots": ["src/shared/types", "node_modules/@types"],
+    "types": ["node", "prompt-sync"]
   },
   "include": ["src"],
   "exclude": []

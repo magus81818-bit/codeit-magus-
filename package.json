@@ -1,11 +1,14 @@
 {
   "name": "codeit-business-ts",
   "scripts": {
-    "start": "npx tsc && node ./dist/oop/level2/container.js",
+    "start": "npx tsc && node ./dist/app-oop/index.js",
     "format": "prettier . --write"
   },
   "dependencies": {
+    "@types/node": "^25.9.3",
+    "@types/prompt-sync": "^4.2.3",
     "prettier": "^3.8.4",
+    "prompt-sync": "^4.2.0",
     "typescript": "^6.0.3"
   }
 }

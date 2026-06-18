@@ -1,16 +1,18 @@
-export class RootScreen {
-  // 속성
-  #authScreen;
-  #memoScreen;
+import { AuthenticatedUser } from "../../types.js";
+import { AuthScreen } from "./auth-screen.js";
+import { MemoScreen } from "./memo-screen.js";
 
-  // 메소드
-  constructor(authScreen, memoScreen) {
+export class RootScreen {
+  #authScreen: AuthScreen;
+  #memoScreen: MemoScreen;
+
+  constructor(authScreen: AuthScreen, memoScreen: MemoScreen) {
     this.#authScreen = authScreen;
     this.#memoScreen = memoScreen;
   }
 
-  run() {
-    let me;
+  run(): void {
+    let me: AuthenticatedUser | undefined;
 
     while (true) {
       while (me === undefined) {
@@ -29,7 +31,7 @@ export class RootScreen {
       console.log();
 
       while (me !== undefined) {
-        console.log(`[${me.username}님의 메모장]`);
+        console.log(`[${me.username}의 메모장]`);
         const choice = this.#memoScreen.showMenuUI();
 
         if (choice === "0") {

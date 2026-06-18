@@ -1,19 +1,19 @@
+import { AuthenticatedUser } from "../../types.js";
 import { prompt } from "../../util.js";
+import { AuthService } from "../../service/auth-service.js";
 
 export class AuthScreen {
-  // 인스턴스 속성(변수)
-  #authService;
+  #authService: AuthService;
 
-  // 메소드(함수)
-  constructor(authService) {
+  constructor(authService: AuthService) {
     this.#authService = authService;
   }
 
-  showAuthUI() {
+  showAuthUI(): string {
     return prompt("로그인(0), 회원 가입(1), 종료(q): ");
   }
 
-  showSignInUI() {
+  showSignInUI(): AuthenticatedUser | undefined {
     const inputEmail = prompt("이메일: ");
     if (inputEmail.includes("@") === false) {
       console.log("올바른 이메일 형식이 아닙니다.");
@@ -35,7 +35,7 @@ export class AuthScreen {
     return user;
   }
 
-  showSignUpUI() {
+  showSignUpUI(): void {
     const inputEmail = prompt("이메일: ");
     if (inputEmail.includes("@") === false) {
       console.log("올바른 이메일 형식이 아닙니다.");
@@ -69,10 +69,10 @@ export class AuthScreen {
       return;
     }
 
-    console.log("회원가입에 성공했어요.\n");
+    console.log("회원 가입에 성공했어요.\n");
   }
 
-  showInvalidInputUI() {
+  showInvalidInputUI(): void {
     console.log("잘못된 입력입니다.\n");
   }
 }

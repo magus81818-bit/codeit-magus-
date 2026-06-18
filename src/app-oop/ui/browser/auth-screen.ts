@@ -1,18 +1,37 @@
-export class AuthScreen {
-  #authService;
+import { AuthService } from "../../service/auth-service.js";
+import { AuthenticatedUser } from "../../types.js";
 
-  constructor(authService) {
+const getInputValue = (id: string): string => {
+  const element = document.getElementById(id);
+  if (!(element instanceof HTMLInputElement)) {
+    throw new Error(`${id} input not found`);
+  }
+
+  return element.value;
+};
+
+const clearInput = (id: string): void => {
+  const element = document.getElementById(id);
+  if (element instanceof HTMLInputElement) {
+    element.value = "";
+  }
+};
+
+export class AuthScreen {
+  #authService: AuthService;
+
+  constructor(authService: AuthService) {
     this.#authService = authService;
   }
 
-  signIn() {
-    const inputEmail = document.getElementById("email").value;
+  signIn(): AuthenticatedUser | null {
+    const inputEmail = getInputValue("email");
     if (inputEmail.includes("@") === false) {
       alert("올바른 이메일 형식이 아닙니다.");
       return null;
     }
 
-    const inputPassword = document.getElementById("password").value;
+    const inputPassword = getInputValue("password");
     if (inputPassword.length < 4) {
       alert("비밀번호는 최소 4자 이상입니다.");
       return null;
@@ -20,7 +39,7 @@ export class AuthScreen {
 
     const user = this.#authService.signIn(inputEmail, inputPassword);
     if (user === null) {
-      alert("이메일 또는 비밀번호가 일치하지 않습니다.\n");
+      alert("이메일 또는 비밀번호가 일치하지 않습니다.");
       return null;
     }
 
@@ -28,20 +47,20 @@ export class AuthScreen {
     return user;
   }
 
-  signUp() {
-    const inputEmail = document.getElementById("new-email").value;
+  signUp(): boolean {
+    const inputEmail = getInputValue("new-email");
     if (inputEmail.includes("@") === false) {
       alert("올바른 이메일 형식이 아닙니다.");
       return false;
     }
 
-    const inputPassword = document.getElementById("new-password").value;
+    const inputPassword = getInputValue("new-password");
     if (inputPassword.length < 4) {
       alert("비밀번호는 최소 4자 이상입니다.");
       return false;
     }
 
-    const inputUsername = document.getElementById("new-username").value;
+    const inputUsername = getInputValue("new-username");
     if (inputUsername.length < 1) {
       alert("이름은 최소 1자 이상입니다.");
       return false;
@@ -57,9 +76,9 @@ export class AuthScreen {
       return false;
     }
 
-    document.getElementById("new-email").value = "";
-    document.getElementById("new-password").value = "";
-    document.getElementById("new-username").value = "";
+    clearInput("new-email");
+    clearInput("new-password");
+    clearInput("new-username");
     alert("회원 가입에 성공했어요.");
     return true;
   }

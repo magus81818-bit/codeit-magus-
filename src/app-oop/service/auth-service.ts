@@ -1,13 +1,13 @@
-export class AuthService {
-  // 속성
-  #userRepo;
+import { AuthenticatedUser, UserRepoLike } from "../types.js";
 
-  // 메소드
-  constructor(userRepo) {
+export class AuthService {
+  #userRepo: UserRepoLike;
+
+  constructor(userRepo: UserRepoLike) {
     this.#userRepo = userRepo;
   }
 
-  signIn(inputEmail, inputPassword) {
+  signIn(inputEmail: string, inputPassword: string): AuthenticatedUser | null {
     const foundUser = this.#userRepo.findUserByEmail(inputEmail);
 
     if (foundUser === null) {
@@ -25,7 +25,7 @@ export class AuthService {
     };
   }
 
-  signUp(inputEmail, inputPassword, inputUsername) {
+  signUp(inputEmail: string, inputPassword: string, inputUsername: string): boolean {
     const foundUser = this.#userRepo.findUserByEmail(inputEmail);
 
     if (foundUser !== null) {

@@ -1,33 +1,30 @@
 import fs from "node:fs";
+import path from "node:path";
 import { Memo } from "../../domain/memo.js";
 
 export class MemoRepo {
-  filePath;
+  filePath: string;
 
   constructor() {
-    this.filePath =
-      "/Users/wiz/codeit-business-1/src/app-oop/database/memos.txt";
+    this.filePath = path.join(process.cwd(), "src/app-oop/database/memos.txt");
   }
 
-  readFile() {
+  readFile(): string[] {
     const result = fs.readFileSync(this.filePath);
     return String(result).trim().split("\n");
   }
 
-  loadMemos() {
+  loadMemos(): Memo[] {
     const result = this.readFile();
-    const memos = [];
+    const memos: Memo[] = [];
     for (let i = 0; i < result.length; i = i + 1) {
-      const memo = new Memo(
-        result[i].split(", ")[0],
-        result[i].split(", ")[1],
-        result[i].split(", ")[2],
-      );
-      memos.push(memo);
+      const [email, title, content] = result[i].split(", ");
+      memos.push(new Memo(email, title, content));
     }
     return memos;
   }
-  createMemo(email, title, content) {
+
+  createMemo(email: string, title: string, content: string): void {
     fs.appendFileSync(this.filePath, `${email}, ${title}, ${content}\n`);
   }
 }
